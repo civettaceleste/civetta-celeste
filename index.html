@@ -1,4 +1,3 @@
-
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.by{display:block;font-size:.72em;font-weight:500;opacity:.7;letter-spacing:.02em;margin-top:2px}
 
 /* menú de categorías: todo desplegado */
@@ -186,6 +185,32 @@ section{padding-block:44px}
 .card:hover .media svg{transform:scale(1.05) rotate(-2deg)}
 .badge{position:absolute;top:12px;left:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--white);color:var(--ink)}
 .badge.oferta{background:var(--ink);color:var(--white)}
+/* ---------- página de producto ---------- */
+.card .media[data-view],.card h3[data-view]{cursor:pointer}
+.card h3[data-view]:hover{color:var(--rose-deep)}
+.pview{position:fixed;inset:0;z-index:65;background:var(--blush);overflow-y:auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+.pv-bar{display:flex;justify-content:space-between;gap:10px;position:sticky;top:0;background:var(--blush);border-bottom:1px solid var(--line);padding-block:12px;z-index:2}
+.pv-back{border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:999px;padding:9px 18px;font-size:14px;font-weight:500}
+.pv-back:hover{border-color:var(--rose-deep);color:var(--rose-deep)}
+.pv-in{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;padding-block:28px 40px;align-items:start}
+.pv-main{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;overflow:hidden}
+.pv-main img{width:100%;height:100%;object-fit:contain;padding:5%}
+.pv-main svg{width:75%}
+.pv-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.pv-thumbs button{width:76px;height:76px;border-radius:12px;border:2px solid var(--line);background:#fff;padding:4px;overflow:hidden}
+.pv-thumbs button[aria-pressed="true"]{border-color:var(--rose-deep)}
+.pv-thumbs img{width:100%;height:100%;object-fit:contain}
+.pv-info{display:flex;flex-direction:column;gap:16px}
+.pv-info h1{font-family:var(--display);font-weight:400;color:var(--rose-deep);font-size:clamp(28px,3.6vw,42px);line-height:1.1;margin:0;text-wrap:balance}
+.pv-info h1 .by{font-family:var(--body);color:var(--muted);font-size:.42em;margin-top:8px}
+.pv-info .price b{font-size:28px}
+.pv-info .price s{font-size:17px}
+.pv-info .opt{justify-content:flex-start;gap:14px;flex-wrap:wrap}
+.pv-info .shade{width:30px;height:30px}
+.pv-info .add{margin-top:6px;padding:14px;font-size:14px}
+.pv-wa{display:flex;justify-content:center;align-items:center;gap:8px;border:1px solid var(--wa);color:#128C4A;border-radius:999px;padding:12px;font-size:13.5px;font-weight:600;text-decoration:none}
+.pv-note{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:6px}
+@media (max-width:820px){.pv-in{grid-template-columns:1fr;gap:22px;padding-top:16px}}
 .badge.agotado{background:#8E6474;color:#fff}
 .card.sold .media img,.card.sold .media svg{filter:grayscale(.85);opacity:.55}
 .card.sold .price b{color:var(--muted)}
@@ -224,7 +249,7 @@ section{padding-block:44px}
 .perk span{color:var(--muted);font-size:14px}
 
 /* ---------- pagos ---------- */
-.pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pay-grid{display:grid;grid-template-columns:minmax(0,520px);gap:14px}
 .pay{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
 .pay .chip{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:600;font-size:13px;flex:none;color:var(--white)}
 .pay strong{display:block;font-weight:500}
@@ -473,14 +498,10 @@ aside.cart.open{transform:none}
   <section id="pagos" class="home-only">
     <div class="wrap">
       <div class="sec-head">
-        <div><div class="eyebrow">Paga como prefieras</div><h2>Medios de pago</h2></div>
+        <div><div class="eyebrow">Paga fácil con llave</div><h2>Medio de pago</h2></div>
       </div>
       <div class="pay-grid">
-        <div class="pay"><div class="chip" style="background:#200020">N</div><div><strong>Nequi</strong><span>Envía el pago desde tu app a esta llave y compártenos el comprobante.</span><span class="pay-key">Llave: <b>0093313634</b> <button type="button" class="copy-key" data-key="0093313634">Copiar</button></span></div></div>
-        <div class="pay"><div class="chip" style="background:var(--rose-deep)">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></div><div><strong>Link de pago</strong><span>¡Hola! Para completar tu pago, ingresa al siguiente link y paga desde tu banco o con tarjeta: <a class="pay-link" href="https://checkout.nequi.wompi.co/l/VPOS_kx7Pfs" target="_blank" rel="noopener">https://checkout.nequi.wompi.co/l/VPOS_kx7Pfs</a></span></div></div>
-        <div class="pay"><div class="chip" style="background:#9A4A6A">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></div><div><strong>Código QR</strong><span>Escanéalo desde la cámara de tu celular y paga desde tu banco o con tarjeta.</span><img class="pay-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAFoAQAAAABSnlx4AAADJklEQVR42u2bQXLjNhBF3xdVobKibkDdhMoJcoXchPDJRr5BDpAFucwq0mqoMs0/C4C27MlMJVV2ECfgimz8wuJ3dffvBijzN54NBV3QBV3Q/zU0ts/ptZnBoT0D9KfWtumfV23f7j396Xbnwvf7os8A4QXPL9C1bXugsuX7A5UNl/11g8PzauE7E9qSjqupmYC7YzvukuFRUigM5kY/brAO1LMVuqGZLO6OhcF86O3XppvyI47+3t4K7e8xwsY9WvQpFL4zK45Uh+pZtodmQvapPQMO3ZBWXyuOwuCboAOgzS83lgWA01OkXQVADagHNg+bw09Qf94APMTVpvD9Rpltrf47IDhmtN/0x/mBH4H9q9h5etbYqewAIDt0t4DC9z+PvuyAu+OoLUgH6usGaD1ZcC9JgnFfGMxSdzwh2z5riQ3vVg60noDu1NgT8PNN7Bhglz7m+XmzI3v4Afi18J3Nl7FKeSGOKaKGqO3VXPLgO6B33wLp9UzJgTZWKZ/rGXrbXrBPaQ5RvJMJ3UwA3f2uWm5Wxj3AXT9ct1ZhMGt3BLRTZUPrVeHVNv2pnaqS2bLWHSXBTUxpc+pdZfqY2aAt3vnXosMt2oLOEzKM++vWUj80SVpctaEv0/I3Rev78fWil2q8AGPjR0VJZwfGPZbVD/WMpEPh+30V3v5beXAV2LMM6dQwmuPp4ULJg++Bnv+yhuhP8TPQeAa6dJjbDVQLDsU7uRRefIvd0eodooYAqBzNxTu5vGOn2EkTVp9ujtaL/v5YvgydJ0gJb6H30KTiNVWlSuWcQ0SxMO6Q5YHrFrg/cK0sHannwmDOTtd2nOHF6hT19yopYjosGiKvhuiG2vEsI470fObVeKJ4J1vs2HZKYTGVtXF41K1NU/HOR0BfFJ/dU2gp6sEFYNxhlTuV+fLgepcoqfN0p4h6YY200ktl9M4Sq9TXU6InLVF6qezoagHGdqpsSVJl6AaQy4Q1f+ykHzHq+eaGQzeU2MmMVhwLYVmH5rK1dKS5SGt3VBj8KOirJOnAY5UuD9mhu9eOOI8AFMqtvQxolf90C7qgC/p/jv4CrbGV35SOw5cAAAAASUVORK5CYII=" alt="Código QR de pago Civetta Celeste"></div></div>
+        <div class="pay"><div class="chip" style="background:var(--rose-deep)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16 7l3 3M14 9l2 2"/></svg></div><div><strong>Llave</strong><span>Envía el pago a esta llave desde la app de tu banco y compártenos el comprobante por WhatsApp.</span><span class="pay-key">Llave: <b>0093313634</b> <button type="button" class="copy-key" data-key="0093313634">Copiar</button></span></div></div>
       </div>
     </div>
   </section>
@@ -546,12 +567,10 @@ aside.cart.open{transform:none}
     <div class="row total"><span>Total</span><span id="total">$0</span></div>
     <label for="payMethod">Medio de pago
       <select id="payMethod">
-        <option>Nequi</option><option>Link de pago</option><option>Código QR</option>
+        <option>Llave</option>
       </select>
     </label>
-    <p class="ship-msg" id="payNequiMsg" hidden>Envía el pago desde Nequi a esta llave y compártenos el comprobante por WhatsApp.<br><span class="pay-key">Llave: <b>0093313634</b> <button type="button" class="copy-key" data-key="0093313634">Copiar</button></span></p>
-    <p class="ship-msg" id="payLinkMsg" hidden>¡Hola! Para completar tu pago, ingresa al siguiente link y paga desde tu banco o con tarjeta: <a class="pay-link" href="https://checkout.nequi.wompi.co/l/VPOS_kx7Pfs" target="_blank" rel="noopener">https://checkout.nequi.wompi.co/l/VPOS_kx7Pfs</a></p>
-    <div id="payQrMsg" hidden style="text-align:center"><p class="ship-msg">Escanea este código QR desde la cámara de tu celular y paga desde tu banco o con tarjeta:</p><img class="pay-qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAFoAQAAAABSnlx4AAADJklEQVR42u2bQXLjNhBF3xdVobKibkDdhMoJcoXchPDJRr5BDpAFucwq0mqoMs0/C4C27MlMJVV2ECfgimz8wuJ3dffvBijzN54NBV3QBV3Q/zU0ts/ptZnBoT0D9KfWtumfV23f7j396Xbnwvf7os8A4QXPL9C1bXugsuX7A5UNl/11g8PzauE7E9qSjqupmYC7YzvukuFRUigM5kY/brAO1LMVuqGZLO6OhcF86O3XppvyI47+3t4K7e8xwsY9WvQpFL4zK45Uh+pZtodmQvapPQMO3ZBWXyuOwuCboAOgzS83lgWA01OkXQVADagHNg+bw09Qf94APMTVpvD9Rpltrf47IDhmtN/0x/mBH4H9q9h5etbYqewAIDt0t4DC9z+PvuyAu+OoLUgH6usGaD1ZcC9JgnFfGMxSdzwh2z5riQ3vVg60noDu1NgT8PNN7Bhglz7m+XmzI3v4Afi18J3Nl7FKeSGOKaKGqO3VXPLgO6B33wLp9UzJgTZWKZ/rGXrbXrBPaQ5RvJMJ3UwA3f2uWm5Wxj3AXT9ct1ZhMGt3BLRTZUPrVeHVNv2pnaqS2bLWHSXBTUxpc+pdZfqY2aAt3vnXosMt2oLOEzKM++vWUj80SVpctaEv0/I3Rev78fWil2q8AGPjR0VJZwfGPZbVD/WMpEPh+30V3v5beXAV2LMM6dQwmuPp4ULJg++Bnv+yhuhP8TPQeAa6dJjbDVQLDsU7uRRefIvd0eodooYAqBzNxTu5vGOn2EkTVp9ujtaL/v5YvgydJ0gJb6H30KTiNVWlSuWcQ0SxMO6Q5YHrFrg/cK0sHannwmDOTtd2nOHF6hT19yopYjosGiKvhuiG2vEsI470fObVeKJ4J1vs2HZKYTGVtXF41K1NU/HOR0BfFJ/dU2gp6sEFYNxhlTuV+fLgepcoqfN0p4h6YY200ktl9M4Sq9TXU6InLVF6qezoagHGdqpsSVJl6AaQy4Q1f+ykHzHq+eaGQzeU2MmMVhwLYVmH5rK1dKS5SGt3VBj8KOirJOnAY5UuD9mhu9eOOI8AFMqtvQxolf90C7qgC/p/jv4CrbGV35SOw5cAAAAASUVORK5CYII=" alt="Código QR de pago"></div>
+    <p class="ship-msg" id="payNequiMsg">Envía el pago a esta llave desde la app de tu banco y compártenos el comprobante por WhatsApp.<br><span class="pay-key">Llave: <b>0093313634</b> <button type="button" class="copy-key" data-key="0093313634">Copiar</button></span></p>
     <a class="checkout" id="checkout" href="#" target="_blank" rel="noopener" aria-disabled="true">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2C6.6 2.2 2.2 6.6 2.2 12c0 1.9.5 3.6 1.5 5.2l-1 3.6 3.7-1c1.5.9 3.2 1.4 5 1.4 5.4 0 9.8-4.4 9.8-9.8S17.4 2.2 12 2.2z"/></svg>
       Finalizar pedido por WhatsApp
@@ -561,6 +580,10 @@ aside.cart.open{transform:none}
   </div>
 </aside>
 
+<div class="pview" id="pview" hidden role="dialog" aria-modal="true" aria-label="Detalle del producto">
+  <div class="pv-bar wrap"><button class="pv-back" id="pvBack">‹ Volver a la tienda</button><button class="pv-back" id="pvCart">Ver carrito (<span id="pvCartN">0</span>)</button></div>
+  <div class="wrap pv-in" id="pvIn"></div>
+</div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -1246,6 +1269,9 @@ function go(path, flag){
   else location.hash = h;   // dispara hashchange
 }
 window.addEventListener("hashchange", ()=>{
+  const h = decodeURIComponent(location.hash.slice(1));
+  if(h.startsWith("p_")){ openPV(+h.slice(2)); return; }
+  if(pvId!==null){ closePV(); pvFromPage=false; if(h === toHash(state.path,state.flag)) return; }
   const r = fromHash(); state.path=r.path; state.flag=r.flag; state.q=""; $("#q").value="";
   openMega(false); render(true);
 });
@@ -1313,10 +1339,10 @@ function renderGrid(){
     const sel = chosen[p.id] ?? 0;
     const color = p.shades[sel]?.[1];
     return `<article class="card${p.agotado?" sold":""}">
-      <div class="media${p.img?" photo":""}">${p.agotado?`<span class="badge agotado">Agotado</span>`:p.tag?`<span class="badge ${p.tag}">${p.tag==="oferta"?"Oferta":"Nuevo"}</span>`:""}${p.img?`<img src="${IMG[p.shades[sel]?.[2]||p.img]}" alt="${p.name}" loading="lazy">${p.img2?`<img class="alt" src="${IMG[p.img2]}" alt="${p.name}, muestra de tonos" loading="lazy">`:""}`:art(p.art,color)}</div>
+      <div class="media${p.img?" photo":""}" data-view="${p.id}" title="Ver producto">${p.agotado?`<span class="badge agotado">Agotado</span>`:p.tag?`<span class="badge ${p.tag}">${p.tag==="oferta"?"Oferta":"Nuevo"}</span>`:""}${p.img?`<img src="${IMG[p.shades[sel]?.[2]||p.img]}" alt="${p.name}" loading="lazy">${p.img2?`<img class="alt" src="${IMG[p.img2]}" alt="${p.name}, muestra de tonos" loading="lazy">`:""}`:art(p.art,color)}</div>
       <div class="body">
         <span class="cat">${trail(p.cat).slice(-1)[0].name}</span>
-        <h3>${nameHtml(p.name)}</h3>
+        <h3 data-view="${p.id}">${nameHtml(p.name)}</h3>
         <div class="price">${p.price==null?`<b class="ask">Consultar precio</b>`:`<b>${cop(p.price)}</b>${p.old?`<s>${cop(p.old)}</s>`:""}`}</div>
         <div class="opt"><span>${p.opt||"Tono"}${p.shades.length?` <em class="tname">· ${p.shades[sel][0]}</em>`:""}</span>${p.shades.length
           ? `<div class="shades">${p.shades.map((s,i)=>(p.chips ? `<button class="shade chip" aria-label="${s[0]}" aria-pressed="${i===sel}" data-shade="${p.id}:${i}">${s[0]}</button>` : `<button class="shade" style="background:${s[1]}" aria-label="Tono ${s[0]}" aria-pressed="${i===sel}" data-shade="${p.id}:${i}"></button>`)).join("")}</div>`
@@ -1335,20 +1361,77 @@ $("#grid").addEventListener("click", e=>{
   const sh = e.target.closest("[data-shade]");
   if(sh){ const [id,i]=sh.dataset.shade.split(":").map(Number); chosen[id]=i; renderGrid(); return; }
   const add = e.target.closest("[data-add]");
-  if(add){
-    const p = PRODUCTS.find(x=>x.id==add.dataset.add);
-    if(p.agotado) return;
-    const shade = p.shades[chosen[p.id]??0]?.[0] || "";
-    const key = p.id+"|"+shade;
-    const it = cart.find(x=>x.key===key);
-    const n = cardQty[p.id]||1;
-    it ? it.qty+=n : cart.push({key,id:p.id,shade,qty:n});
-    cardQty[p.id]=1; $("#cq"+p.id).textContent=1;
-    save(); renderCart();
-    add.textContent="Agregado ✓"; add.classList.add("done");
-    setTimeout(()=>{add.textContent="Agregar al carrito"; add.classList.remove("done");},1300);
-    toast(`${n} × ${p.name.split(" ").slice(0,3).join(" ")} agregado${n>1?"s":""} al carrito`);
-  }
+  if(add){ addToCart(PRODUCTS.find(x=>x.id==add.dataset.add), add); return; }
+  const v = e.target.closest("[data-view]");
+  if(v){ pvFromPage = true; location.hash = "p_"+v.dataset.view; }
+});
+function addToCart(p, btn){
+  if(!p || p.agotado) return;
+  const shade = p.shades[chosen[p.id]??0]?.[0] || "";
+  const key = p.id+"|"+shade;
+  const it = cart.find(x=>x.key===key);
+  const n = cardQty[p.id]||1;
+  it ? it.qty+=n : cart.push({key,id:p.id,shade,qty:n});
+  cardQty[p.id]=1; document.querySelectorAll("#cq"+p.id+", #pvq"+p.id).forEach(el=>el.textContent=1);
+  save(); renderCart();
+  if(btn){ btn.textContent="Agregado ✓"; btn.classList.add("done");
+    setTimeout(()=>{btn.textContent="Agregar al carrito"; btn.classList.remove("done");},1300); }
+  toast(`${n} × ${p.name.split(" ").slice(0,3).join(" ")} agregado${n>1?"s":""} al carrito`);
+}
+/* ---------- página de producto ---------- */
+let pvFromPage = false, pvId = null, pvImg = 0;
+function pvImages(p){
+  const sel = chosen[p.id] ?? 0, list = [];
+  if(p.img){ list.push(p.shades[sel]?.[2] || p.img);
+    p.shades.forEach(s=>{ if(s[2] && !list.includes(s[2])) list.push(s[2]); });
+    if(p.img2 && !list.includes(p.img2)) list.push(p.img2);
+    if(!list.includes(p.img)) list.push(p.img); }
+  return list;
+}
+function renderPV(){
+  const p = PRODUCTS.find(x=>x.id===pvId); if(!p) return;
+  const sel = chosen[p.id] ?? 0, imgs = pvImages(p); if(pvImg >= imgs.length) pvImg = 0;
+  const color = p.shades[sel]?.[1];
+  $("#pvIn").innerHTML = `
+    <div>
+      <div class="pv-main">${p.agotado?`<span class="badge agotado">Agotado</span>`:p.tag?`<span class="badge ${p.tag}">${p.tag==="oferta"?"Oferta":"Nuevo"}</span>`:""}
+        ${imgs.length?`<img src="${IMG[imgs[pvImg]]}" alt="${p.name}">`:art(p.art,color)}</div>
+      ${imgs.length>1?`<div class="pv-thumbs">${imgs.map((k,i)=>`<button data-pvimg="${i}" aria-pressed="${i===pvImg}" aria-label="Foto ${i+1}"><img src="${IMG[k]}" alt=""></button>`).join("")}</div>`:""}
+    </div>
+    <div class="pv-info">
+      <div class="eyebrow crumbs">${trail(p.cat).map((t,i)=>`${i?"<i>›</i>":""}<button data-cat="${t.path}">${t.name}</button>`).join("")}</div>
+      <h1>${nameHtml(p.name)}</h1>
+      <div class="price">${p.price==null?`<b class="ask">Consultar precio</b>`:`<b>${cop(p.price)}</b>${p.old?`<s>${cop(p.old)}</s>`:""}`}</div>
+      <div class="opt"><span>${p.opt||"Tono"}${p.shades.length?` <em class="tname">· ${p.shades[sel][0]}</em>`:""}</span>${p.shades.length
+        ? `<div class="shades">${p.shades.map((s,i)=>(p.chips ? `<button class="shade chip" aria-label="${s[0]}" aria-pressed="${i===sel}" data-pvshade="${i}">${s[0]}</button>` : `<button class="shade" style="background:${s[1]}" aria-label="Tono ${s[0]}" aria-pressed="${i===sel}" data-pvshade="${i}"></button>`)).join("")}</div>`
+        : `<span class="unico">${p.toneNote||"Único"}</span>`}</div>
+      ${p.agotado?"":`<div class="opt"><span>Cantidad</span><div class="qty"><button data-pvq="-1" aria-label="Quitar uno">−</button><span id="pvq${p.id}">${cardQty[p.id]||1}</span><button data-pvq="1" aria-label="Agregar uno">+</button></div></div>`}
+      ${p.agotado ? `<button class="add" disabled>Agotado</button>` : p.price==null
+        ? `<a class="add" style="text-align:center;text-decoration:none" href="${waUrl("Hola, quiero saber el precio de: "+p.name)}" target="_blank" rel="noopener">Consultar precio</a>`
+        : `<button class="add" data-pvadd="1">Agregar al carrito</button>`}
+      <a class="pv-wa" href="${waUrl("Hola Civetta Celeste, tengo una pregunta sobre: "+p.name)}" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+      <div class="pv-note"><span>Envío a toda Colombia · gratis en compras desde ${cop(ENVIO_GRATIS_DESDE)}.</span><span>Pagas con llave y confirmamos tu pedido por WhatsApp.</span></div>
+    </div>`;
+}
+function openPV(id){
+  if(!PRODUCTS.find(x=>x.id===id)){ closePV(); return; }
+  if(pvId!==id) pvImg = 0;
+  pvId = id; renderPV(); $("#pview").hidden = false; $("#pview").scrollTop = 0;
+  document.body.style.overflow = "hidden"; openMega(false);
+}
+function closePV(){ pvId = null; $("#pview").hidden = true; document.body.style.overflow = ""; }
+$("#pvCart").addEventListener("click", ()=>openCart(true));
+$("#pvBack").addEventListener("click", ()=>{
+  if(pvFromPage){ pvFromPage = false; history.back(); }
+  else { closePV(); history.replaceState(null,"",location.pathname+location.search+(toHash(state.path,state.flag)?"#"+toHash(state.path,state.flag):"")); }
+});
+$("#pvIn").addEventListener("click", e=>{
+  const p = PRODUCTS.find(x=>x.id===pvId); if(!p) return;
+  const t = e.target.closest("[data-pvimg]"); if(t){ pvImg = +t.dataset.pvimg; renderPV(); return; }
+  const sh = e.target.closest("[data-pvshade]"); if(sh){ chosen[p.id] = +sh.dataset.pvshade; pvImg = 0; renderPV(); renderGrid(); return; }
+  const q = e.target.closest("[data-pvq]"); if(q){ cardQty[p.id]=Math.max(1,Math.min(20,(cardQty[p.id]||1)+ +q.dataset.pvq)); $("#pvq"+p.id).textContent=cardQty[p.id]; return; }
+  const a = e.target.closest("[data-pvadd]"); if(a){ addToCart(p, a); return; }
+  if(e.target.closest("[data-cat]")) closePV();
 });
 let qTimer;
 function runSearch(scroll){
@@ -1370,7 +1453,7 @@ function totals(){
 }
 function renderCart(){
   const n = cart.reduce((s,i)=>s+i.qty,0);
-  $("#cartCount").textContent = n;
+  $("#cartCount").textContent = n; const pvn=document.getElementById("pvCartN"); if(pvn) pvn.textContent = n;
   $("#cItems").innerHTML = cart.length ? cart.map(i=>{
     const p = PRODUCTS.find(x=>x.id===i.id);
     const color = p.shades.find(s=>s[0]===i.shade)?.[1];
@@ -1411,10 +1494,10 @@ $("#checkout").addEventListener("click", ()=>{
       ()=>{ $("#orderText").hidden=false; toast("Copia tu pedido y pégalo en WhatsApp"); });
   }catch(e){ $("#orderText").hidden=false; }
 });
-const showPayLink = () => { const m=$("#payMethod").value; $("#payLinkMsg").hidden = m !== "Link de pago"; $("#payQrMsg").hidden = m !== "Código QR"; $("#payNequiMsg").hidden = m !== "Nequi"; };
+const showPayLink = () => { $("#payNequiMsg").hidden = false; };
 document.addEventListener("click", e=>{ const b=e.target.closest(".copy-key"); if(!b) return;
-  const k=b.dataset.key, ok=()=>{ toast("Llave Nequi copiada ✓"); b.textContent="Copiada ✓"; setTimeout(()=>b.textContent="Copiar",1500); };
-  (navigator.clipboard ? navigator.clipboard.writeText(k) : Promise.reject()).then(ok, ()=>toast("Llave Nequi: "+k)); });
+  const k=b.dataset.key, ok=()=>{ toast("Llave copiada ✓"); b.textContent="Copiada ✓"; setTimeout(()=>b.textContent="Copiar",1500); };
+  (navigator.clipboard ? navigator.clipboard.writeText(k) : Promise.reject()).then(ok, ()=>toast("Llave: "+k)); });
 $("#shipDest").addEventListener("change", renderCart);
 $("#payMethod").addEventListener("change", ()=>{ showPayLink(); updateCheckout(); });
 showPayLink();
@@ -1432,12 +1515,13 @@ function openCart(o){
 $("#openCart").onclick=()=>openCart(true);
 $("#closeCart").onclick=()=>openCart(false);
 $("#scrim").onclick=()=>openCart(false);
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ openCart(false); openMega(false); } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape" && pvId!==null){ $("#pvBack").click(); return; } if(e.key==="Escape"){ openCart(false); openMega(false); } });
 
 let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),1800); }
 
 renderNav(); renderCart();
-{ const r = fromHash(); state.path=r.path; state.flag=r.flag; render(false); }
+{ const r = fromHash(); state.path=r.path; state.flag=r.flag; render(false);
+  const h0 = decodeURIComponent(location.hash.slice(1)); if(h0.startsWith("p_")) openPV(+h0.slice(2)); }
 </script>
 
 </body></html>
